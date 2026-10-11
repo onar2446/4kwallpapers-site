@@ -1,0 +1,23 @@
+# Security headers for static hosts that support this file
+# (Cloudflare Pages, Netlify). The Python server already sends these itself —
+# this file is here so the same protection survives a move to a static host.
+# It is never served: the server blocks underscore-prefixed names.
+#
+# NOTE: the Turnstile *gate* is server-side (it calls siteverify and issues a
+# signed cookie), so it cannot run on a purely static host. The CSP below still
+# allows the widget, which is what you need if you front the site with a
+# Cloudflare Worker or keep running server.py.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cse.google.com https://www.google.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://4kwallpapers.com; font-src 'self' data:; connect-src 'self' https://cse.google.com https://www.googleapis.com https://challenges.cloudflare.com; media-src 'self'; manifest-src 'self'; object-src 'none'; frame-src https://cse.google.com https://www.google.com https://challenges.cloudflare.com; worker-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=(), browsing-topics=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  X-Permitted-Cross-Domain-Policies: none
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+/assets/*
+  Cache-Control: public, max-age=86400

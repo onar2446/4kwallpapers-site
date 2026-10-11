@@ -1,0 +1,15 @@
+# 4K Wallpapers Site (mirror + live python proxy)
+# Run locally:  python server.py 8000  ->  http://localhost:8000/
+# Secrets (Turnstile secret, gate key) live OUTSIDE this repo and are never committed.
+
+# --- never commit secrets ---
+4kwallpapers_source-secrets/
+*.secret
+gate.key
+.env
+.env.*
+
+# python junk
+__pycache__/
+*.pyc
+*.pyo
